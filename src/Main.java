@@ -1,24 +1,22 @@
 //Trivia
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main extends PreguntasRespuestas{
     public static int numPreguntas(){ //Funcion que retornará el número de preguntas que va a tener la trivia
         Scanner inNumPreguntas = new Scanner(System.in); //Creando objeto tipo Scanner para la función
-        int inputNumPreguntas = 0;
-        Boolean flagNumPreguntas;
+        int inputNumPreguntas;
+        boolean flagNumPreguntas;
         //Mirará si el número ingresado es mayor o negativo al número de preguntas que hay - Lo realizará por lo menos 1 vez
         do {
             limpiarPantalla();
-            System.out.println("\n" + "-----Trivia-----" + "\n");
+            System.out.println("""
+
+                    -----Trivia-----
+                    """);
             System.out.println("Escribe la cantidad de preguntas que quiere que tenga la trivia: (Entre 1 - 5 Preguntas)");
             inputNumPreguntas = inNumPreguntas.nextInt();
-            if(inputNumPreguntas >= 1 && inputNumPreguntas <= 5){
-                flagNumPreguntas = false;
-            }else {
-                flagNumPreguntas = true;
-            }
+            flagNumPreguntas = inputNumPreguntas < 1 || inputNumPreguntas > 5; // Si es mayor o menor al número me marcará como verdadero haciendo que se haga el do while
         }while(flagNumPreguntas);
         return inputNumPreguntas;
     }
@@ -28,7 +26,10 @@ public class Main extends PreguntasRespuestas{
         int cantidadPreguntas;
         //Comenzar o Salir de la trivia
         limpiarPantalla();
-        System.out.println("\n" + "-----Trivia-----" + "\n");
+        System.out.println("""
+
+                -----Trivia-----
+                """);
         System.out.println("1. Para Comenzar" + "\n" + "2. Para cerrar");
         int inputCC = inMain.nextInt(); //Input para comenzar o cerrar
         switch (inputCC){
@@ -37,9 +38,6 @@ public class Main extends PreguntasRespuestas{
                 comenzarTrivia(cantidadPreguntas);
                 break;
             case 2:
-                System.exit(0);
-                break;
-            default:
                 System.exit(0);
                 break;
         }
