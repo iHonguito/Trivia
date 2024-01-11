@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class PreguntasRespuestas{
     static String[][] matrizContenedora = new String[5][5]; //Matriz contenedora de la Trivia
 
@@ -35,6 +37,24 @@ public class PreguntasRespuestas{
     }
 
     public static void comenzarTrivia(int cantidadPreguntas){
-
+        int[] comparadorAleatoriedad = new int[cantidadPreguntas];
+        int aleatoriedad, acumuladorAleatoriedad;
+        Arrays.fill(comparadorAleatoriedad, -1);
+        for (int i = 0; i < cantidadPreguntas; i++) {
+            do {
+                acumuladorAleatoriedad = 0;
+                aleatoriedad = (int) (Math.random() * cantidadPreguntas);
+                for (int j = 0; j < cantidadPreguntas; j++) {
+                    if (comparadorAleatoriedad[j] == aleatoriedad){
+                        acumuladorAleatoriedad += 1;
+                        break;
+                    }
+                }
+                if(acumuladorAleatoriedad == 0){
+                    comparadorAleatoriedad[i] = aleatoriedad;
+                }
+            }while (acumuladorAleatoriedad != 0);
+            System.out.println(comparadorAleatoriedad[i]);
+        }
     }
 }
