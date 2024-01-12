@@ -43,8 +43,7 @@ public class Main extends PreguntasRespuestas{
         }
     }
 
-    //Limpiador de pantalla - Colocará 50 líneas en blanco
-    public static void limpiarPantalla(){
+    public static void limpiarPantalla(){ //Limpiador de pantalla - Colocará 50 líneas en blanco
         for(int i = 1; i <= 50; i ++){
             System.out.println(" ");
         }

@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class PreguntasRespuestas{
     static String[][] matrizContenedora = new String[5][5]; //Matriz contenedora de la Trivia
-
+    static int[] respuestasAleatorias = new int[4]; //Vector contenedor de posiciones aleatorias
     public static void preguntasRespuestas(){ //Preguntas y respuestas
         // PR1
         matrizContenedora[0][0] = "Estas tres ciudades se localizan en las costas del mar Caribe:";
@@ -37,24 +37,52 @@ public class PreguntasRespuestas{
     }
 
     public static void comenzarTrivia(int cantidadPreguntas){
-        int[] comparadorAleatoriedad = new int[cantidadPreguntas];
-        int aleatoriedad, acumuladorAleatoriedad;
-        Arrays.fill(comparadorAleatoriedad, -1);
+        int[] comparadorAleatoriedadPreguntas = new int[cantidadPreguntas];
+        int aleatoriedadPreguntas, aleatoriedadRespuestas, acumuladorAleatoriedad;
+        preguntasRespuestas();
+        Arrays.fill(comparadorAleatoriedadPreguntas, -1); //El array se itera así mismo colocando -1 para evitar errores
         for (int i = 0; i < cantidadPreguntas; i++) {
-            do {
+            limpiarPantalla();
+            do { //Aleatoriedad en las preguntas - el do while se cumplirá tantas veces para que las posiciones no sean repetidas
                 acumuladorAleatoriedad = 0;
-                aleatoriedad = (int) (Math.random() * cantidadPreguntas);
+                aleatoriedadPreguntas = (int) (Math.random() * 5); //Posiciones de las preguntas aleatorias
                 for (int j = 0; j < cantidadPreguntas; j++) {
-                    if (comparadorAleatoriedad[j] == aleatoriedad){
-                        acumuladorAleatoriedad += 1;
+                    if (comparadorAleatoriedadPreguntas[j] == aleatoriedadPreguntas){ //Si la posicion ya fue utilizada
+                        acumuladorAleatoriedad = 1;
                         break;
                     }
                 }
-                if(acumuladorAleatoriedad == 0){
-                    comparadorAleatoriedad[i] = aleatoriedad;
+                if(acumuladorAleatoriedad == 0){ //En caso de que el número aleatorio no se haya usado set y proseguir
+                    comparadorAleatoriedadPreguntas[i] = aleatoriedadPreguntas;
                 }
-            }while (acumuladorAleatoriedad != 0);
-            System.out.println(comparadorAleatoriedad[i]);
+            }while (acumuladorAleatoriedad != 0); //En caso de que la posicion haya sido utilizada
+            Arrays.fill(respuestasAleatorias, -1); //El array se itera así mismo colocando -1 para evitar errores
+            for (int j = 0; j < 4; j++) {
+                do { //Aleatoriedad en las respuestas - el do while se cumplirá tantas veces para que las posiciones no sean repetidas
+                    acumuladorAleatoriedad = 0;
+                    aleatoriedadRespuestas = (int) ((Math.random() * 4) + 1); //Posiciones de las respuestas aleatorias según las preguntas
+                    for (int k = 0; k < 4; k++) {
+                        if(respuestasAleatorias[k] == aleatoriedadRespuestas){ //Si la posicion ya fue utilizada
+                            acumuladorAleatoriedad = 1;
+                            break;
+                        }
+                    }
+                    if (acumuladorAleatoriedad == 0) { //En caso de que el número aleatorio no se haya usado set y proseguir
+                        respuestasAleatorias[j] = aleatoriedadRespuestas;
+                    }
+                }while (acumuladorAleatoriedad != 0); //En caso de que la posicion haya sido utilizada
+            }
+            //Output
+            System.out.println(matrizContenedora[aleatoriedadPreguntas][0]); //Mostrará la pregunta
+            for (int j = 0; j < 4; j++) { //Muestra las posibles respuestas de forma aleatoria
+                System.out.println(matrizContenedora[aleatoriedadPreguntas][respuestasAleatorias[j]]);
+            }
+        }
+    }
+
+    public static void limpiarPantalla(){ //Limpiador de pantalla - Colocará 50 líneas en blanco
+        for(int i = 1; i <= 50; i ++){
+            System.out.println(" ");
         }
     }
 }
