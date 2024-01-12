@@ -16,6 +16,7 @@ public class Main extends PreguntasRespuestas{
                     """);
             System.out.println("Escribe la cantidad de preguntas que quiere que tenga la trivia: (Entre 1 - 5 Preguntas)");
             inputNumPreguntas = inNumPreguntas.nextInt();
+            //Nota: La condicion de flagNumPreguntas se cambia dependiendo de cuantas preguntas haya
             flagNumPreguntas = inputNumPreguntas < 1 || inputNumPreguntas > 5; // Si es mayor o menor al número me marcará como verdadero haciendo que se haga el do while
         }while(flagNumPreguntas);
         return inputNumPreguntas;
