@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class PreguntasRespuestas{
     //Nota: Dependiendo de cuantas preguntas se quiere que haya se cambia el número de columnas que tiene la matriz
-    static String[][] matrizContenedora = new String[5][5]; //Matriz contenedora de la Trivia
+    static String[][] matrizContenedora = new String[6][5]; //Matriz contenedora de la Trivia
     static int[] respuestasAleatorias = new int[4]; //Vector contenedor de posiciones aleatorias
     public static void preguntasRespuestas(){ //Preguntas y respuestas
         //Nota: Las primeras preguntas son las respuestas correctas
@@ -37,6 +37,12 @@ public class PreguntasRespuestas{
         matrizContenedora[4][2] = "2007.";
         matrizContenedora[4][3] = "2011.";
         matrizContenedora[4][4] = "1999.";
+        //PR6
+        matrizContenedora[5][0] = "¿Hasta que año Panamá formó parte de Colombia?";
+        matrizContenedora[5][1] = "1903.";
+        matrizContenedora[5][2] = "1914";
+        matrizContenedora[5][3] = "1899.";
+        matrizContenedora[5][4] = "1831.";
     }
 
     public static void comenzarTrivia(int cantidadPreguntas){
@@ -51,7 +57,7 @@ public class PreguntasRespuestas{
             do { //Aleatoriedad en las preguntas - el do while se cumplirá tantas veces para que las posiciones no sean repetidas
                 acumuladorAleatoriedad = 0;
                 //Nota: El número de posiciones aleatorias depende de cuantas preguntas haya en este caso es de 5
-                aleatoriedadPreguntas = (int) (Math.random() * 5);
+                aleatoriedadPreguntas = (int) (Math.random() * 6);
                 for (int j = 0; j < cantidadPreguntas; j++) {
                     if (comparadorAleatoriedadPreguntas[j] == aleatoriedadPreguntas){ //Si la posicion ya fue utilizada
                         acumuladorAleatoriedad = 1;
@@ -100,8 +106,8 @@ public class PreguntasRespuestas{
 
     //Sistema de puntos - Dependiendo de cuantas preguntas el usuario responda correctamente serán los puntos
     public static void sistemaPuntos(int cantidadPreguntas, int puntos){
-        float sistemaPuntos;
-        sistemaPuntos = (float) ((puntos * 100) / cantidadPreguntas);
+        int sistemaPuntos;
+        sistemaPuntos = ((puntos * 100) / cantidadPreguntas);
         System.out.println(sistemaPuntos + " puntos.");
     }
     public static void limpiarPantalla(){ //Limpiador de pantalla - Colocará 50 líneas en blanco
